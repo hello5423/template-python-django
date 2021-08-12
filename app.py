@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    render_template('./client/app.html')
+    return render_template("app.html")
 
 @app.route("/get_location_names")
 def get_location_names():
@@ -31,4 +31,6 @@ def predict_home_price():
     return response
 if __name__ == "__main__":
     util.load_saved_artifacts()
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.run()
